@@ -78,7 +78,7 @@ En Settings > Secrets and variables > Actions > Variables:
 | --- | --- |
 | `DEPLOY_PATH` | `/home/grupo18sa/proyecto2/frontend` (valor por defecto) |
 | `VITE_API_URL` | URL pública completa del backend, incluyendo `/api`; por ejemplo `https://DOMINIO_API/api` |
-| `VITE_BASE_PATH` | Ruta pública del frontend: `/` para dominio propio o `/sistema-web/` si se publica bajo esa ruta |
+| `VITE_BASE_PATH` | `/inf513/grupo18sa/proyecto2/frontend/current/` (valor por defecto para la URL institucional actual) |
 
 Si el servidor ya dirige `/api` hacia Laravel en el mismo dominio, `VITE_API_URL=/api` funciona. El proxy de Vite solo sirve durante desarrollo: no existe en `dist`. Nunca uses `localhost:8000` como API de producción. Las variables `VITE_*` son públicas; no pongas contraseñas ni secretos allí.
 
@@ -94,6 +94,6 @@ El administrador debe configurar Apache/Nginx para servir:
 /home/grupo18sa/proyecto2/frontend/current
 ```
 
-El workflow crea ese enlace al terminar el primer despliegue. Crear la carpeta no asigna una URL pública. Si se usa una ruta como `/sistema-web/`, el servidor y `VITE_BASE_PATH` deben coincidir. Para navegación mediante rutas del navegador, configura la reescritura a `index.html`.
+El workflow crea ese enlace al terminar el primer despliegue. La URL institucional actual es `https://www.tecnoweb.org.bo/inf513/grupo18sa/proyecto2/frontend/current/`. El workflow compila los recursos con esa ruta base; si ya tienes una variable de repositorio `VITE_BASE_PATH`, actualízala al mismo valor, porque reemplaza el valor por defecto. Si más adelante se publica directamente en `/inf513/grupo18sa/proyecto2/`, cambia la variable y vuelve a desplegar. Para navegación mediante rutas del navegador, configura la reescritura a `index.html`.
 
 No ejecutes `npm run dev` en producción. El servidor entrega los archivos estáticos compilados.
