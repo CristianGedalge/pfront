@@ -63,5 +63,5 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-          DEPLOY_PATH: ${{ vars.DEPLOY_PATH || '/home/grupo18sa/sistema-web/frontend' }}
+          DEPLOY_PATH: ${{ vars.DEPLOY_PATH || '/home/grupo18sa/proyecto2/frontend' }}
         run: bash .github/scripts/deploy.sh

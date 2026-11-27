@@ -76,7 +76,7 @@ En Settings > Secrets and variables > Actions > Variables:
 
 | Variable | Valor |
 | --- | --- |
-| `DEPLOY_PATH` | `/home/grupo18sa/sistema-web/frontend` (valor por defecto) |
+| `DEPLOY_PATH` | `/home/grupo18sa/proyecto2/frontend` (valor por defecto) |
 | `VITE_API_URL` | URL pública completa del backend, incluyendo `/api`; por ejemplo `https://DOMINIO_API/api` |
 | `VITE_BASE_PATH` | Ruta pública del frontend: `/` para dominio propio o `/sistema-web/` si se publica bajo esa ruta |
 
@@ -91,7 +91,7 @@ GitHub ejecuta `npm ci` y `npm run build`, y envía solo el contenido compilado 
 El administrador debe configurar Apache/Nginx para servir:
 
 ```text
-/home/grupo18sa/sistema-web/frontend/current
+/home/grupo18sa/proyecto2/frontend/current
 ```
 
 El workflow crea ese enlace al terminar el primer despliegue. Crear la carpeta no asigna una URL pública. Si se usa una ruta como `/sistema-web/`, el servidor y `VITE_BASE_PATH` deben coincidir. Para navegación mediante rutas del navegador, configura la reescritura a `index.html`.

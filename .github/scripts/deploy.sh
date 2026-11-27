@@ -18,8 +18,8 @@ RUN_MIGRATIONS=${RUN_MIGRATIONS:-false}
 [[ "$SSH_HOST" =~ ^[a-zA-Z0-9][a-zA-Z0-9.-]*$ ]]
 [[ "$SSH_USER" =~ ^[a-zA-Z0-9_][a-zA-Z0-9_.-]*$ ]]
 [[ "$SSH_PORT" =~ ^[0-9]+$ ]]
-[[ "$DEPLOY_PATH" =~ ^/home/[a-zA-Z0-9_.-]+/sistema-web/$APP_KIND$ ]] || {
-  echo 'DEPLOY_PATH debe ser /home/USUARIO/sistema-web/frontend o backend.' >&2; exit 1;
+[[ "$DEPLOY_PATH" =~ ^/home/[a-zA-Z0-9_.-]+/proyecto2/$APP_KIND$ ]] || {
+  echo 'DEPLOY_PATH debe ser /home/USUARIO/proyecto2/frontend o backend.' >&2; exit 1;
 }
 [[ "$PHP_BIN" =~ ^[a-zA-Z0-9_./-]+$ ]]
 [[ "$RUN_MIGRATIONS" == true || "$RUN_MIGRATIONS" == false ]]
