@@ -77,7 +77,7 @@ En Settings > Secrets and variables > Actions > Variables:
 | Variable | Valor |
 | --- | --- |
 | `DEPLOY_PATH` | `/home/grupo18sa/proyecto2/frontend` (valor por defecto) |
-| `VITE_API_URL` | URL pública completa del backend, incluyendo `/api`; por ejemplo `https://DOMINIO_API/api` |
+| `VITE_API_URL` | `/inf513/grupo18sa/proyecto2/api` por defecto, publicada por el workflow del backend |
 | `VITE_BASE_PATH` | `/inf513/grupo18sa/proyecto2/` (valor por defecto para la entrada pública del sistema) |
 
 Si el servidor ya dirige `/api` hacia Laravel en el mismo dominio, `VITE_API_URL=/api` funciona. El proxy de Vite solo sirve durante desarrollo: no existe en `dist`. Nunca uses `localhost:8000` como API de producción. Las variables `VITE_*` son públicas; no pongas contraseñas ni secretos allí.

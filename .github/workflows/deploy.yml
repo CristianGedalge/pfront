@@ -29,7 +29,7 @@ jobs:
       - run: npm ci
       - name: Compilar React
         env:
-          VITE_API_URL: ${{ vars.VITE_API_URL || '/api' }}
+          VITE_API_URL: ${{ vars.VITE_API_URL || '/inf513/grupo18sa/proyecto2/api' }}
           VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH || '/inf513/grupo18sa/proyecto2/' }}
         run: npm run build
       - uses: actions/upload-artifact@v4
