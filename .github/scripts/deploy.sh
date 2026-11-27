@@ -94,6 +94,26 @@ if [[ "$kind" == backend ]]; then
   fi
 else
   [[ -f "$release/index.html" ]]
+  [[ -d "$release/assets" ]]
+
+  project_root="${root%/frontend}"
+  [[ "$project_root" != "$root" ]] || { echo 'Ruta del frontend incorrecta.' >&2; exit 1; }
+
+  for entry in index.html assets; do
+    public_entry="$project_root/$entry"
+    if [[ -e "$public_entry" || -L "$public_entry" ]]; then
+      [[ -L "$public_entry" && "$(readlink "$public_entry")" == "frontend/current/$entry" ]] || {
+        echo "Ya existe $public_entry y no es un enlace de este despliegue. No se reemplazara." >&2
+        exit 1
+      }
+    fi
+  done
+
+  for entry in index.html assets; do
+    if [[ ! -L "$project_root/$entry" ]]; then
+      ln -s "frontend/current/$entry" "$project_root/$entry"
+    fi
+  done
 fi
 
 [[ ! -e "$root/current" || -L "$root/current" ]] || {

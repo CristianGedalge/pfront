@@ -78,7 +78,7 @@ En Settings > Secrets and variables > Actions > Variables:
 | --- | --- |
 | `DEPLOY_PATH` | `/home/grupo18sa/proyecto2/frontend` (valor por defecto) |
 | `VITE_API_URL` | URL pública completa del backend, incluyendo `/api`; por ejemplo `https://DOMINIO_API/api` |
-| `VITE_BASE_PATH` | `/inf513/grupo18sa/proyecto2/frontend/current/` (valor por defecto para la URL institucional actual) |
+| `VITE_BASE_PATH` | `/inf513/grupo18sa/proyecto2/` (valor por defecto para la entrada pública del sistema) |
 
 Si el servidor ya dirige `/api` hacia Laravel en el mismo dominio, `VITE_API_URL=/api` funciona. El proxy de Vite solo sirve durante desarrollo: no existe en `dist`. Nunca uses `localhost:8000` como API de producción. Las variables `VITE_*` son públicas; no pongas contraseñas ni secretos allí.
 
@@ -88,12 +88,21 @@ GitHub ejecuta `npm ci` y `npm run build`, y envía solo el contenido compilado 
 
 ### Directorio web
 
-El administrador debe configurar Apache/Nginx para servir:
+Las versiones compiladas permanecen en:
 
 ```text
 /home/grupo18sa/proyecto2/frontend/current
 ```
 
-El workflow crea ese enlace al terminar el primer despliegue. La URL institucional actual es `https://www.tecnoweb.org.bo/inf513/grupo18sa/proyecto2/frontend/current/`. El workflow compila los recursos con esa ruta base; si ya tienes una variable de repositorio `VITE_BASE_PATH`, actualízala al mismo valor, porque reemplaza el valor por defecto. Si más adelante se publica directamente en `/inf513/grupo18sa/proyecto2/`, cambia la variable y vuelve a desplegar. Para navegación mediante rutas del navegador, configura la reescritura a `index.html`.
+El despliegue crea estos enlaces en `/home/grupo18sa/proyecto2`, sin reemplazar archivos ajenos:
+
+```text
+index.html -> frontend/current/index.html
+assets     -> frontend/current/assets
+```
+
+Así el servidor institucional puede abrir el sistema directamente en `https://www.tecnoweb.org.bo/inf513/grupo18sa/proyecto2/`, conservando esa URL. Los enlaces siguen la versión activa de `current`. Si ya tienes una variable de repositorio `VITE_BASE_PATH`, actualízala a `/inf513/grupo18sa/proyecto2/`, porque reemplaza el valor por defecto. El servidor debe permitir estos enlaces simbólicos, como ya lo hace para `frontend/current`.
+
+Esta aplicación navega entre secciones sin rutas del navegador. Si incorporas rutas como `/login`, también necesitarás configurar su reescritura a `index.html`. La publicación de la API se configura por separado: los enlaces anteriores no publican Laravel.
 
 No ejecutes `npm run dev` en producción. El servidor entrega los archivos estáticos compilados.
